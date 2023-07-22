@@ -1,12 +1,11 @@
 import discord
 import os
-from dotenv import load_dotenv
 from discord.ext import commands
 
 
-load_dotenv()
 
-discordtoken = os.getenv('token')
+
+discordtoken = os.getenv('pytoken')
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
@@ -22,15 +21,14 @@ async def ping(ctx):
 async def add(ctx, a: int, b: int):
     await ctx.send(a + b)
 
-
-
 '''@bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
 
     if message.content.startswith('why does this stop this from working?'):
-        await message.channel.send("cause you're dumb")'''
+        await message.channel.send("cause you're dumb")
+        '''
 
 @bot.command()
 async def kick(ctx, member: commands.MemberConverter):
