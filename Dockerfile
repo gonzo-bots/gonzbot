@@ -1,7 +1,7 @@
 FROM python:3.10
 
 RUN echo 'pecker'
-EXPOSE 80
+EXPOSE 8000
 RUN echo 'head'
 COPY . .
 
