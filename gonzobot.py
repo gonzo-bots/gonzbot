@@ -15,7 +15,7 @@ async def on_ready():
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send("pee")
+    await ctx.send("piss")
 
 @bot.command()
 async def add(ctx, a: int, b: int):
