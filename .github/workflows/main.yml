@@ -21,7 +21,7 @@ env:
   ECR_REPOSITORY: gonzobot           # set this to your Amazon ECR repository name
   ECS_SERVICE: gonzobot_service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: gonzobot                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: gonzobot_task # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: arn:aws:ecs:us-east-1:117317009590:task-definition/gonzobot_task:2 # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: gonzobot           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
