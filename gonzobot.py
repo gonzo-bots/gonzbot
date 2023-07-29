@@ -2,11 +2,7 @@ import discord
 import os
 from discord.ext import commands
 
-
-
-
-#discordtoken = os.getenv('pytoken')
-discordtoken = 'TVRBNU9USXdNelUxTXpJeU9ESTBNamszTkEuR1hPWklDLnFZa2pKUlFmUkRLYjh5QW9iQUg0d1QybUw3SU5NY1B6U1BTMUJJ'
+discordtoken = os.getenv('pytoken')
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
@@ -22,15 +18,6 @@ async def ping(ctx):
 async def add(ctx, a: int, b: int):
     await ctx.send(a + b)
 
-'''@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-
-    if message.content.startswith('why does this stop this from working?'):
-        await message.channel.send("cause you're dumb")
-        '''
-
 @bot.command()
 async def kick(ctx, member: commands.MemberConverter):
     await ctx.guild.kick(member)
@@ -38,3 +25,11 @@ async def kick(ctx, member: commands.MemberConverter):
 
 
 bot.run(discordtoken)
+
+
+
+
+
+
+
+
