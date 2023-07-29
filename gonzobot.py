@@ -5,7 +5,8 @@ from discord.ext import commands
 
 
 
-discordtoken = str(os.getenv('PYTOKEN'))
+#discordtoken = os.getenv('pytoken')
+discordtoken = 'TVRBNU9USXdNelUxTXpJeU9ESTBNamszTkEuR1hPWklDLnFZa2pKUlFmUkRLYjh5QW9iQUg0d1QybUw3SU5NY1B6U1BTMUJJ'
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
