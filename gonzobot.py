@@ -3,6 +3,7 @@ import os
 from discord.ext import commands
 
 discordtoken = os.getenv('pytoken')
+print(os.getenv('pytoken'))
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
