@@ -4,6 +4,7 @@ from discord.ext import commands
 
 discordtoken = os.getenv('pytoken')
 print(os.getenv('pytoken'))
+str(discordtoken)
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
