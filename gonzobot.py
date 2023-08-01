@@ -1,11 +1,13 @@
 import discord
 import os
+import json
 from discord.ext import commands
 
-discordtoken = os.getenv('pytoken')
-sliced_token = discordtoken.split(':')[1]
-sliced_token = sliced_token.replace('}', '').replace('"', '')
-str(sliced_token)
+token_json = os.getenv('pytoken')
+token_dict = json.loads(token_json)
+for k, v in token_dict.items():
+    discord_token = v
+print(discord_token)
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -28,7 +30,7 @@ async def kick(ctx, member: commands.MemberConverter):
     await ctx.send(f'{member} has been kicked.')
 
 
-bot.run(sliced_token)
+bot.run(discord_token)
 
 
 
