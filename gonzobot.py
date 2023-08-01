@@ -5,9 +5,9 @@ from discord.ext import commands
 discordtoken = os.getenv('pytoken')
 print(os.getenv('pytoken'))
 sliced_token = discordtoken.split(':')[1]
-sliced_token.replace('}', '')
-sliced_token.replace('"', '')
+sliced_token = sliced_token.replace('}', '').replace('"', '')
 print(sliced_token)
+str(sliced_token)
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
@@ -29,7 +29,7 @@ async def kick(ctx, member: commands.MemberConverter):
     await ctx.send(f'{member} has been kicked.')
 
 
-bot.run(discordtoken)
+bot.run(sliced_token)
 
 
 
