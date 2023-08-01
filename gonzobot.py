@@ -4,8 +4,10 @@ from discord.ext import commands
 
 discordtoken = os.getenv('pytoken')
 print(os.getenv('pytoken'))
-result_string = discordtoken.split(':')[1]
-print(result_string)
+sliced_token = discordtoken.split(':')[1]
+sliced_token.replace('}', '')
+sliced_token.replace('"', '')
+print(sliced_token)
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
