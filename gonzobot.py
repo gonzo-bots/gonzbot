@@ -2,12 +2,10 @@ import discord
 import os
 import json
 from discord.ext import commands
+import steamapi
 
-token_json = os.getenv('pytoken')
-token_dict = json.loads(token_json)
-for k, v in token_dict.items():
-    discord_token = v
-
+token_json = json.loads(os.getenv('pytoken'))['pytoken']
+steamkey = json.loads(os.getenv('steamkey'))['steamkey']
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -19,6 +17,11 @@ async def on_ready():
 @bot.command()
 async def ping(ctx):
     await ctx.send("pee")
+
+@bot.command(aliases=['holybots ratio', 'holybot\'s ratio', 'hbrat'])
+async def holybots(ctx):
+    await ctx.send(steamapi.getHolybotsRatio(steamkey))
+
 
 @bot.command()
 async def add(ctx, a: int, b: int):
