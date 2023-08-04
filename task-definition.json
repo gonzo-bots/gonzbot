@@ -1,10 +1,12 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:117317009590:task-definition/gonzobot_task:3",
+    "family": "gonzobot_task",
     "containerDefinitions": [
         {
             "name": "gonzobot",
-            "image": "117317009590.dkr.ecr.us-east-1.amazonaws.com/gonzobot",
+            "image": "117317009590.dkr.ecr.us-east-1.amazonaws.com/gonzobot:a9e183c147a08f8aacd1f5f7f4d7358943a71a02",
             "cpu": 0,
+            "memory": 512,
+            "memoryReservation": 256,
             "portMappings": [
                 {
                     "name": "gonzobot-80-tcp",
@@ -16,16 +18,18 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
             "secrets": [
                 {
                     "name": "pytoken",
                     "valueFrom": "arn:aws:secretsmanager:us-east-1:117317009590:secret:pytoken-FMU2Zk"
+                },
+                {
+                    "name": "steamkey",
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:117317009590:secret:steamkey-qo34hL"
                 }
             ],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -38,56 +42,15 @@
             }
         }
     ],
-    "family": "gonzobot_task",
     "executionRoleArn": "arn:aws:iam::117317009590:role/ECSadmin",
     "networkMode": "awsvpc",
-    "revision": 3,
-    "volumes": [],
-    "status": "ACTIVE",
-    "requiresAttributes": [
-        {
-            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "ecs.capability.execution-role-awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-        },
-        {
-            "name": "ecs.capability.secrets.asm.environment-variables"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "ecs.capability.task-eni"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
-        }
-    ],
-    "placementConstraints": [],
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "cpu": "1024",
-    "memory": "3072",
+    "cpu": "256",
+    "memory": "512",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
-    },
-    "registeredAt": "2023-07-30T12:47:26.397Z",
-    "registeredBy": "arn:aws:iam::117317009590:root",
-    "tags": []
+    }
 }
