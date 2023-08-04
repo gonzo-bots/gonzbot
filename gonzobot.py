@@ -4,7 +4,7 @@ import json
 from discord.ext import commands
 import steamapi
 
-token_json = json.loads(os.getenv('pytoken'))['pytoken']
+pytoken = json.loads(os.getenv('pytoken'))['pytoken']
 steamkey = json.loads(os.getenv('steamkey'))['steamkey']
 
 intents = discord.Intents.all()
@@ -33,7 +33,7 @@ async def kick(ctx, member: commands.MemberConverter):
     await ctx.send(f'{member} has been kicked.')
 
 
-bot.run(discord_token)
+bot.run(pytoken)
 
 
 
