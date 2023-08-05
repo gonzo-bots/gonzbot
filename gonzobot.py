@@ -19,11 +19,11 @@ async def ping(ctx):
     await ctx.send("pee")
 
 @bot.command(aliases=['holybots ratio', 'holybot\'s ratio', 'hbrat'])
-async def holybots(ctx):
+async def holybotsKD(ctx):
     await ctx.send(steamapi.getHolybotsRatio(steamkey))
 
 @bot.command(aliases=['holybots accuracy', 'hbacc'])
-async def holybots(ctx):
+async def holybotsAcc(ctx):
     await ctx.send(steamapi.getHolybotsAcc(steamkey))
 
 @bot.command()
