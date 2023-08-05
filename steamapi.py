@@ -9,8 +9,7 @@ def getHolybotsRatio(steamkey):
 
     kills = 0
     deaths = 0
-    totalshots = 0
-    totalhits = 0
+
 
     for item in data['playerstats']['stats']:
         if item['name']=='total_kills':
