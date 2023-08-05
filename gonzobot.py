@@ -22,6 +22,9 @@ async def ping(ctx):
 async def holybots(ctx):
     await ctx.send(steamapi.getHolybotsRatio(steamkey))
 
+@bot.command(aliases=['holybots accuracy', 'hbacc'])
+async def holybots(ctx):
+    await ctx.send(steamapi.getHolybotsAcc(steamkey))
 
 @bot.command()
 async def add(ctx, a: int, b: int):
