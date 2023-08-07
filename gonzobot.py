@@ -16,7 +16,7 @@ async def on_ready():
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send("pee")
+    await ctx.send("hi amanda")
 
 @bot.command(aliases=['holybots ratio', 'holybot\'s ratio', 'hbrat'])
 async def holybotsKD(ctx):
