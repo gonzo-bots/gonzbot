@@ -2,6 +2,7 @@ import requests
 import json
 
 
+
 def getHolybotsRatio(steamkey):
     id='76561198029848726'
     data = requests.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key='+steamkey+'&steamid='+id)
@@ -55,6 +56,6 @@ def getHolybotsAcc(steamkey):
     return accComment
 
 if __name__ == '__main__':
-    steamkey='testkey'
+    steamkey = "changeme"
     print(getHolybotsRatio(steamkey))
     print(getHolybotsAcc(steamkey))
