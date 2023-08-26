@@ -19,9 +19,6 @@ def getHolybotsRatio(steamkey):
             deaths = item['value']
 
 
-
-
-
     kd = kills/deaths
     meme = ''
 
