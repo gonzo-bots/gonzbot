@@ -59,21 +59,26 @@ def getHolybotsMaps(steamkey):
     maps = {}
 
     for item in data['playerstats']['stats']:
-        if item['name']=='total_wins_map_cs_assault':
-            print(item)
-            maps.update(item)
-            print(maps)
-        if item['name']=='total_wins_map_cs_italy':
-            maps.update(item)
-            print(maps)
+        if 'total_wins_map_' in item['name']:
+            maps[item['name'].split('_')[-1]] = item['value']
 
-    print(f'this is maps {maps}')
+    mapsComment = f'Holybot wins the most on the map {(max(maps, key=maps.get))}.'
+
+    return mapsComment
+
+
+
+
+
+
+
+
 
 
 
 
 if __name__ == '__main__':
-    steamkey = "F29EB3D121C129EE524D9E858DC9FE4A"
+    steamkey = "changeme"
     print(getHolybotsRatio(steamkey))
     print(getHolybotsAcc(steamkey))
     print(getHolybotsMaps(steamkey))

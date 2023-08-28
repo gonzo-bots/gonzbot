@@ -26,6 +26,10 @@ async def holybotsKD(ctx):
 async def holybotsAcc(ctx):
     await ctx.send(steamapi.getHolybotsAcc(steamkey))
 
+@bot.command(aliases=['holybots maps', 'hbmaps'])
+async def holybotsMaps(ctx):
+    await ctx.send(steamapi.getHolybotsMaps(steamkey))
+
 @bot.command()
 async def add(ctx, a: int, b: int):
     await ctx.send(a + b)
