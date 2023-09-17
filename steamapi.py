@@ -109,7 +109,7 @@ def getUserStats(steamkey, discid):
 
         kd = kills / deaths
 
-        msgstats = f'{name}\'s accuracy: {int(accuracy)}% kd ratio: {round(kd, 2)} knife kills: {knife}'
+        msgstats = f'{name}\'s accuracy: {int(accuracy)}%\nkd ratio: {round(kd, 2)}\nknife kills: {knife}'
 
     except KeyError:
         msgstats = "user not found"
@@ -127,7 +127,7 @@ def getUserStats(steamkey, discid):
 
 if __name__ == '__main__':
     steamkey = 'placeholder'
-    #discid =
+    #discid = 121853574056640516
     #print(getUserStats(steamkey, discid))
     #print(getHolybotsRatio(steamkey))
     #print(getHolybotsAcc(steamkey))
