@@ -7,6 +7,7 @@ import steamapi
 pytoken = json.loads(os.getenv('pytoken'))['pytoken']
 steamkey = json.loads(os.getenv('steamkey'))['steamkey']
 
+
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
@@ -38,6 +39,21 @@ async def add(ctx, a: int, b: int):
 async def kick(ctx, member: commands.MemberConverter):
     await ctx.guild.kick(member)
     await ctx.send(f'{member} has been kicked.')
+
+@bot.command()
+async def who(ctx):
+    if ctx.author.id == 121853574056640516:
+        await ctx.send('yes that works')
+    else:
+        await ctx.send('you are not authorized to use that command')
+
+@bot.command()
+async def stats(ctx):
+    await ctx.send(steamapi.getUserStats(steamkey, ctx.author.id))
+
+
+
+
 
 
 bot.run(pytoken)
