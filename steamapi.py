@@ -127,9 +127,9 @@ def getUserStats(steamkey, discid):
 
 
 if __name__ == '__main__':
-    steamkey = 'F29EB3D121C129EE524D9E858DC9FE4A'
-    discid = 121853574056640516
-    print(getUserStats(steamkey, discid))
+    steamkey = 'placeholder'
+    #discid = 121853574056640516
+    #print(getUserStats(steamkey, discid))
     #print(getHolybotsRatio(steamkey))
     #print(getHolybotsAcc(steamkey))
     #print(getHolybotsMaps(steamkey))
