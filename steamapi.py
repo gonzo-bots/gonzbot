@@ -72,7 +72,7 @@ def getUserStats(steamkey, discid):
                  '121853574056640516': {'id': '76561197961452726', 'name': 'holkan'},
                  '529461008025124864': {'id': '76561197962906391', 'name': 'slain'},
                  '207180137802891264': {'id': '76561197961451238', 'name': 'santa'}}
-    id = ''
+
     try:
         id = steamdict[str(discid)]['id']
         name = steamdict[str(discid)]['name']
@@ -89,7 +89,7 @@ def getUserStats(steamkey, discid):
 
         knife = 0
 
-
+        headshot = 0
 
         for item in data['playerstats']['stats']:
             if item['name']=='total_shots_hit':
@@ -102,14 +102,15 @@ def getUserStats(steamkey, discid):
                 deaths = item['value']
             if item['name']=='total_kills_knife':
                 knife = item['value']
-
-
+            if item['name']=='total_kills_headshot':
+                headshot = item['value']
+        hspercent = 100 - ((kills - headshot) / kills * 100)
 
         accuracy = 100 - ((shotsfired - shotshit) / shotsfired * 100)
 
         kd = kills / deaths
 
-        msgstats = f'{name}\'s accuracy: {int(accuracy)}%\nkd ratio: {round(kd, 2)}\nknife kills: {knife}'
+        msgstats = f'{name}\'s accuracy: {int(accuracy)}%\nkd ratio: {round(kd, 2)}\nknife kills: {knife}\nheadshots: {int(hspercent)}%'
 
     except KeyError:
         msgstats = "user not found"
@@ -126,9 +127,9 @@ def getUserStats(steamkey, discid):
 
 
 if __name__ == '__main__':
-    steamkey = 'placeholder'
-    #discid = 121853574056640516
-    #print(getUserStats(steamkey, discid))
+    steamkey = 'F29EB3D121C129EE524D9E858DC9FE4A'
+    discid = 121853574056640516
+    print(getUserStats(steamkey, discid))
     #print(getHolybotsRatio(steamkey))
     #print(getHolybotsAcc(steamkey))
     #print(getHolybotsMaps(steamkey))

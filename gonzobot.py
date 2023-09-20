@@ -17,7 +17,7 @@ async def on_ready():
 
 @bot.command()
 async def speak(ctx):
-    await ctx.send("I track csgo stats.")
+    await ctx.send('I track csgo stats.')
 
 @bot.command(aliases=['holybots ratio', 'holybot\'s ratio', 'hbrat'])
 async def holybotsKD(ctx):
