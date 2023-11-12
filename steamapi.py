@@ -47,9 +47,9 @@ def getHolybotsAcc(steamkey):
             shotsfired = item['value']
 
     accuracy = 100 - ((shotsfired - shotshit) / shotsfired * 100)
-    accComment = f'Holybot\'s accuracy is {int(accuracy)}%'
+    accmsg = f'Holybot\'s accuracy is {int(accuracy)}%'
 
-    return accComment
+    return accmsg
 
 def getHolybotsMaps(steamkey):
     id='76561198029848726'
@@ -63,9 +63,9 @@ def getHolybotsMaps(steamkey):
             maps[item['name'].split('_')[-1]] = item['value']
 
 
-    mapsComment = f'Holybot wins the most on the map {(max(maps, key=maps.get))}.'
+    mapscomment = f'Holybot wins the most on the map {(max(maps, key=maps.get))}.'
 
-    return mapsComment
+    return mapscomment
 
 def getUserStats(steamkey, discid):
     steamdict = {'207391826527780865': {'id': '76561198029848726', 'name': 'holybot'},

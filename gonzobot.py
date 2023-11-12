@@ -2,6 +2,8 @@ import discord
 import os
 import json
 from discord.ext import commands
+
+import sentimentanalysis
 import steamapi
 
 pytoken = json.loads(os.getenv('pytoken'))['pytoken']
@@ -51,9 +53,13 @@ async def who(ctx):
 async def stats(ctx):
     await ctx.send(steamapi.getUserStats(steamkey, ctx.author.id))
 
-
-
-
+@bot.command()
+async def analyze(ctx):
+    async for message in ctx.message.channel.history(limit=10):
+        if ctx.author == message.author and message.content != '!analyze':
+            with open(f'{ctx.author}_chat_history.txt', 'a') as file:
+                file.write(message.content + '\n')
+    await ctx.send(sentimentanalysis.analyze(f'{ctx.author}_chat_history.txt'))
 
 
 bot.run(pytoken)
