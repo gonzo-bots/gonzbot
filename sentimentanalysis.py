@@ -7,9 +7,6 @@ def analyze(filename):
     positive = 0
     negative = 0
 
-    '''with open(filename, 'w', encoding='utf-8') as file:
-        file.seek(0)
-        file.write(messages)'''
     with open(filename, 'r') as file:
         for line in file.read().split('\n'):
             total_lines += 1
