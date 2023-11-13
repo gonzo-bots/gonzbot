@@ -55,11 +55,32 @@ async def stats(ctx):
 
 @bot.command()
 async def analyze(ctx):
-    async for message in ctx.message.channel.history(limit=10):
-        if ctx.author == message.author and message.content != '!analyze':
-            with open(f'{ctx.author}_chat_history.txt', 'a') as file:
+    async for message in ctx.message.channel.history(limit=1000):
+        if ctx.author.name == message.author.name and message.content.startswith('!') == False:
+            with open(f'{message.author}_chat_history.txt', 'a+') as file:
                 file.write(message.content + '\n')
-    await ctx.send(sentimentanalysis.analyze(f'{ctx.author}_chat_history.txt'))
+    await ctx.send(sentimentanalysis.analyze(f'{ctx.message.author}_chat_history.txt'))
+
+@bot.command()
+async def analyzeoth(ctx):
+    msg = ctx.message.content.split()
+    searchname = msg[1]
+    async for message in ctx.message.channel.history(limit=1000):
+        if searchname == message.author.name and message.content.startswith('!') == False:
+            with open(f'{searchname}_chat_history.txt', 'a+') as file:
+                file.write(message.content + '\n')
+    await ctx.send(sentimentanalysis.analyze(f'{searchname}_chat_history.txt'))
+@bot.command()
+async def test(ctx):
+    print(ctx.author.name)
+    print(ctx.message.content.split())
+    async for message in ctx.message.channel.history(limit=1):
+        print(message.author.name)
+        if ctx.author == message.author:
+            print(message.author, ctx.author)
+            print(message.author.name)
+        if ctx.author == message.author and message.content.startswith('h') == False:
+            print('the h was not found')
 
 
 bot.run(pytoken)
