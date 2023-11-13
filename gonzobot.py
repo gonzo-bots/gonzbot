@@ -57,9 +57,9 @@ async def stats(ctx):
 async def analyze(ctx):
     async for message in ctx.message.channel.history(limit=1000):
         if ctx.author.name == message.author.name and message.content.startswith('!') == False:
-            with open(f'{message.author}_chat_history.txt', 'a+') as file:
+            with open(f'{message.author.name}_chat_history.txt', 'a+') as file:
                 file.write(message.content + '\n')
-    await ctx.send(sentimentanalysis.analyze(f'{ctx.message.author}_chat_history.txt'))
+    await ctx.send(sentimentanalysis.analyze(f'{ctx.author.name}_chat_history.txt'))
 
 @bot.command()
 async def analyzeoth(ctx):
