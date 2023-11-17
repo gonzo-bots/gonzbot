@@ -28,6 +28,10 @@
                 {
                     "name": "steamkey",
                     "valueFrom": "arn:aws:secretsmanager:us-east-1:117317009590:secret:steamkey-qo34hL"
+                },
+                {
+                    "name": "gptkey",
+                    "valueFrom": "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"
                 }
             ],
             "logConfiguration": {

@@ -3,69 +3,84 @@ import json
 
 
 def getHolybotsRatio(steamkey):
-    id='76561198029848726'
-    data = requests.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key='+steamkey+'&steamid='+id)
-    data = json.loads(data.text)
+    try:
+        id = '76561198029848726'
+        data = requests.get(
+            'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + steamkey + '&steamid=' + id)
+        data = json.loads(data.text)
 
-    kills = 0
-    deaths = 0
+        kills = 0
+        deaths = 0
 
+        for item in data['playerstats']['stats']:
+            if item['name'] == 'total_kills':
+                kills = item['value']
+            if item['name'] == 'total_deaths':
+                deaths = item['value']
 
-    for item in data['playerstats']['stats']:
-        if item['name']=='total_kills':
-            kills = item['value']
-        if item['name']=='total_deaths':
-            deaths = item['value']
+        kd = kills / deaths
+        meme = ''
 
+        if kd > 1:
+            meme = 'adequate'
+        if kd == 1:
+            meme = 'funny'
+        if kd < 1:
+            meme = 'totally lame and inexcusable'
 
-    kd = kills/deaths
-    meme = ''
+        kdlaugh = 'Holybot\'s ' + meme + ' kill death ratio is ' + str(kd) + '.'
 
-    if kd > 1:
-        meme='adequate'
-    if kd == 1:
-        meme = 'funny'
-    if kd < 1:
-        meme = 'totally lame and inexcusable'
-
-    kdlaugh= 'Holybot\'s ' + meme + ' kill death ratio is ' + str(kd)+'.'
+    except Exception as e:
+        kdlaugh = e
 
     return kdlaugh
 
+
 def getHolybotsAcc(steamkey):
-    id='76561198029848726'
-    data = requests.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key='+steamkey+'&steamid='+id)
-    data = json.loads(data.text)
+    try:
+        id = '76561198029848726'
+        data = requests.get(
+            'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + steamkey + '&steamid=' + id)
+        data = json.loads(data.text)
 
-    shotshit = 0
-    shotsfired = 0
+        shotshit = 0
+        shotsfired = 0
 
-    for item in data['playerstats']['stats']:
-        if item['name']=='total_shots_hit':
-            shotshit = item['value']
-        if item['name']=='total_shots_fired':
-            shotsfired = item['value']
+        for item in data['playerstats']['stats']:
+            if item['name'] == 'total_shots_hit':
+                shotshit = item['value']
+            if item['name'] == 'total_shots_fired':
+                shotsfired = item['value']
 
-    accuracy = 100 - ((shotsfired - shotshit) / shotsfired * 100)
-    accmsg = f'Holybot\'s accuracy is {int(accuracy)}%'
+        accuracy = 100 - ((shotsfired - shotshit) / shotsfired * 100)
+        accmsg = f'Holybot\'s accuracy is {int(accuracy)}%'
+
+    except Exception as e:
+        accmsg = e
 
     return accmsg
 
+
 def getHolybotsMaps(steamkey):
-    id='76561198029848726'
-    data = requests.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key='+steamkey+'&steamid='+id)
-    data = json.loads(data.text)
+    try:
+        id = '76561198029848726'
+        data = requests.get(
+            'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + steamkey + '&steamid=' + id)
+        data = json.loads(data.text)
 
-    maps = {}
+        maps = {}
 
-    for item in data['playerstats']['stats']:
-        if 'total_wins_map_' in item['name']:
-            maps[item['name'].split('_')[-1]] = item['value']
+        for item in data['playerstats']['stats']:
+            if 'total_wins_map_' in item['name']:
+                maps[item['name'].split('_')[-1]] = item['value']
 
+        mapscomment = f'Holybot wins the most on the map {(max(maps, key=maps.get))}.'
 
-    mapscomment = f'Holybot wins the most on the map {(max(maps, key=maps.get))}.'
+    except Exception as e:
+        mapscomment = e
 
     return mapscomment
+
 
 def getUserStats(steamkey, discid):
     steamdict = {'207391826527780865': {'id': '76561198029848726', 'name': 'holybot'},
@@ -77,7 +92,8 @@ def getUserStats(steamkey, discid):
         id = steamdict[str(discid)]['id']
         name = steamdict[str(discid)]['name']
         print(id)
-        data = requests.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key='+steamkey+'&steamid='+id)
+        data = requests.get(
+            'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + steamkey + '&steamid=' + id)
         print(data.status_code)
         data = json.loads(data.text)
 
@@ -92,17 +108,17 @@ def getUserStats(steamkey, discid):
         headshot = 0
 
         for item in data['playerstats']['stats']:
-            if item['name']=='total_shots_hit':
+            if item['name'] == 'total_shots_hit':
                 shotshit = item['value']
-            if item['name']=='total_shots_fired':
+            if item['name'] == 'total_shots_fired':
                 shotsfired = item['value']
-            if item['name']=='total_kills':
+            if item['name'] == 'total_kills':
                 kills = item['value']
-            if item['name']=='total_deaths':
+            if item['name'] == 'total_deaths':
                 deaths = item['value']
-            if item['name']=='total_kills_knife':
+            if item['name'] == 'total_kills_knife':
                 knife = item['value']
-            if item['name']=='total_kills_headshot':
+            if item['name'] == 'total_kills_headshot':
                 headshot = item['value']
         hspercent = 100 - ((kills - headshot) / kills * 100)
 
@@ -118,18 +134,13 @@ def getUserStats(steamkey, discid):
     except Exception as e:
         msgstats = e
 
-
     return msgstats
-
-
-
-
 
 
 if __name__ == '__main__':
     steamkey = 'placeholder'
-    #discid = 121853574056640516
-    #print(getUserStats(steamkey, discid))
-    #print(getHolybotsRatio(steamkey))
-    #print(getHolybotsAcc(steamkey))
-    #print(getHolybotsMaps(steamkey))
+    # discid = 121853574056640516
+    # print(getUserStats(steamkey, discid))
+    # print(getHolybotsRatio(steamkey))
+    # print(getHolybotsAcc(steamkey))
+    # print(getHolybotsMaps(steamkey))

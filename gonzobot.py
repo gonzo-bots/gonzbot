@@ -2,45 +2,53 @@ import discord
 import os
 import json
 from discord.ext import commands
-
 import sentimentanalysis
 import steamapi
+import ai
 
 pytoken = json.loads(os.getenv('pytoken'))['pytoken']
 steamkey = json.loads(os.getenv('steamkey'))['steamkey']
-
+gptkey = json.loads(os.getenv('gptkey'))['gptkey']
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
+
 
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user}')
 
+
 @bot.command()
 async def speak(ctx):
     await ctx.send('I track csgo stats.')
+
 
 @bot.command(aliases=['holybots ratio', 'holybot\'s ratio', 'hbrat'])
 async def holybotsKD(ctx):
     await ctx.send(steamapi.getHolybotsRatio(steamkey))
 
+
 @bot.command(aliases=['holybots accuracy', 'hbacc'])
 async def holybotsAcc(ctx):
     await ctx.send(steamapi.getHolybotsAcc(steamkey))
+
 
 @bot.command(aliases=['holybots maps', 'hbmaps'])
 async def holybotsMaps(ctx):
     await ctx.send(steamapi.getHolybotsMaps(steamkey))
 
+
 @bot.command()
 async def add(ctx, a: int, b: int):
     await ctx.send(a + b)
+
 
 @bot.command()
 async def kick(ctx, member: commands.MemberConverter):
     await ctx.guild.kick(member)
     await ctx.send(f'{member} has been kicked.')
+
 
 @bot.command()
 async def who(ctx):
@@ -49,9 +57,11 @@ async def who(ctx):
     else:
         await ctx.send('you are not authorized to use that command')
 
+
 @bot.command()
 async def stats(ctx):
     await ctx.send(steamapi.getUserStats(steamkey, ctx.author.id))
+
 
 @bot.command()
 async def analyze(ctx):
@@ -60,6 +70,7 @@ async def analyze(ctx):
             with open(f'{message.author.name}_chat_history.txt', 'a+') as file:
                 file.write(message.content + '\n')
     await ctx.send(sentimentanalysis.analyze(f'{ctx.author.name}_chat_history.txt'))
+
 
 @bot.command()
 async def analyzeoth(ctx):
@@ -70,6 +81,17 @@ async def analyzeoth(ctx):
             with open(f'{searchname}_chat_history.txt', 'a+') as file:
                 file.write(message.content + '\n')
     await ctx.send(sentimentanalysis.analyze(f'{searchname}_chat_history.txt'))
+
+
+@bot.command()
+async def chatgpt(ctx):
+    msg = ctx.message.content.split()
+    msg.pop(0)
+    prompt = ' '.join(msg)
+    await ctx.send(ai.gpt(prompt, gptkey))
+
+
+
 @bot.command()
 async def test(ctx):
     print(ctx.author.name)
@@ -84,14 +106,3 @@ async def test(ctx):
 
 
 bot.run(pytoken)
-
-
-
-
-
-
-
-
-
-
-
