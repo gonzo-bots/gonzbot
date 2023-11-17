@@ -31,7 +31,7 @@
                 },
                 {
                     "name": "gptkey",
-                    "valueFrom": "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"
+                    "valueFrom": "arn:aws:secretsmanager:us-east-1:117317009590:secret:gptkey-4ZhiCU"
                 }
             ],
             "logConfiguration": {
