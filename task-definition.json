@@ -30,7 +30,7 @@
                     "valueFrom": "arn:aws:secretsmanager:us-east-1:117317009590:secret:steamkey-qo34hL"
                 },
                 {
-                    "name": "gptkey",
+                    "name": "gptapikey",
                     "valueFrom": "arn:aws:secretsmanager:us-east-1:117317009590:secret:gptapikey-0dpYFS"
                 }
             ],
