@@ -8,7 +8,7 @@ import ai
 
 pytoken = json.loads(os.getenv('pytoken'))['pytoken']
 steamkey = json.loads(os.getenv('steamkey'))['steamkey']
-gptkey = json.loads(os.getenv('gptkey'))['gptkey']
+gptkey = json.loads(os.getenv('gptapikey'))['gptapikey']
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
