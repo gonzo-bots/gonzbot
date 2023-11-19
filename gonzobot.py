@@ -1,3 +1,4 @@
+import asyncio
 import discord
 import os
 import json
@@ -91,6 +92,30 @@ async def chatgpt(ctx):
     await ctx.send(ai.gpt(prompt, gptkey))
 
 
+@bot.command()
+async def gpt(ctx):
+    try:
+        msg = ctx.message.content.split()
+        msg.pop(0)
+        prompt = ' '.join(msg)
+        history = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ]
+
+        while True:
+            await ctx.send(ai.convo(history, gptkey))
+            message = await bot.wait_for('message', check=lambda message: message.author == ctx.author, timeout=30)
+            prompt = message.content
+            history.append({"role": "system", "content": "You are a helpful assistant."})
+            history.append({"role": "user", "content": prompt})
+            if message.content.lower() == "stop":
+                print("stopping")
+                return
+    except asyncio.TimeoutError:
+        print("timed out")
+        await ctx.send("Conversation timed out")
+
 
 @bot.command()
 async def test(ctx):
@@ -103,6 +128,5 @@ async def test(ctx):
             print(message.author.name)
         if ctx.author == message.author and message.content.startswith('h') == False:
             print('the h was not found')
-
 
 bot.run(pytoken)

@@ -14,5 +14,12 @@ def gpt(prompt, key):
     result = completion.choices[0].message.content
     return result
 
+def convo(history, key):
+    client = OpenAI(api_key=key)
 
-
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=history
+    )
+    result = completion.choices[0].message.content
+    return result
