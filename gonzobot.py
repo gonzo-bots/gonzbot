@@ -26,18 +26,18 @@ async def speak(ctx):
 
 
 @bot.command(aliases=['holybots ratio', 'holybot\'s ratio', 'hbrat'])
-async def holybotsKD(ctx):
-    await ctx.send(steamapi.getHolybotsRatio(steamkey))
+async def holybotskd(ctx):
+    await ctx.send(steamapi.get_holybots_ratio(steamkey))
 
 
 @bot.command(aliases=['holybots accuracy', 'hbacc'])
-async def holybotsAcc(ctx):
-    await ctx.send(steamapi.getHolybotsAcc(steamkey))
+async def holybotsacc(ctx):
+    await ctx.send(steamapi.get_holybots_acc(steamkey))
 
 
 @bot.command(aliases=['holybots maps', 'hbmaps'])
-async def holybotsMaps(ctx):
-    await ctx.send(steamapi.getHolybotsMaps(steamkey))
+async def holybotsmaps(ctx):
+    await ctx.send(steamapi.get_holybots_maps(steamkey))
 
 
 @bot.command()
@@ -61,7 +61,7 @@ async def who(ctx):
 
 @bot.command()
 async def stats(ctx):
-    await ctx.send(steamapi.getUserStats(steamkey, ctx.author.id))
+    await ctx.send(steamapi.get_user_stats(steamkey, ctx.author.id))
 
 
 @bot.command()

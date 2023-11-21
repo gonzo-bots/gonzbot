@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def getHolybotsRatio(steamkey):
+def get_holybots_ratio(steamkey):
     try:
         id = '76561198029848726'
         data = requests.get(
@@ -36,7 +36,7 @@ def getHolybotsRatio(steamkey):
     return kdlaugh
 
 
-def getHolybotsAcc(steamkey):
+def get_holybots_acc(steamkey):
     try:
         id = '76561198029848726'
         data = requests.get(
@@ -61,7 +61,7 @@ def getHolybotsAcc(steamkey):
     return accmsg
 
 
-def getHolybotsMaps(steamkey):
+def get_holybots_maps(steamkey):
     try:
         id = '76561198029848726'
         data = requests.get(
@@ -82,7 +82,7 @@ def getHolybotsMaps(steamkey):
     return mapscomment
 
 
-def getUserStats(steamkey, discid):
+def get_user_stats(steamkey, discid):
     steamdict = {'207391826527780865': {'id': '76561198029848726', 'name': 'holybot'},
                  '121853574056640516': {'id': '76561197961452726', 'name': 'holkan'},
                  '529461008025124864': {'id': '76561197962906391', 'name': 'slain'},
