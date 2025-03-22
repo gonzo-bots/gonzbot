@@ -7,13 +7,6 @@ Features
     Sentiment Analysis: Incorporates sentimentanalysis.py to assess text sentiment.​
     Steam API Interaction: Employs steamapi.py to fetch data from the Steam platform.​
 
-Installation
-
-    Clone the repository:
-
-git clone https://github.com/gonzo-bots/gonzbot.git
-cd gonzbot
-
 Create and activate a virtual environment:
 
 python3 -m venv env
